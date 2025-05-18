@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>עדכון פרטי משתמש</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 id="name"></h2>
+            <h2>עדכון פרטים</h2>
+            <p>כאן ניתן לעדכן את פרטי המשתמש שלך</p>
+
+            <input type="text" id="firstName" placeholder="שם פרטי">
+            <input type="text" id="lastName" placeholder="שם משפחה">
+            <input type="email" id="userName" placeholder="אימייל">
+            <input type="password" id="password" placeholder="סיסמה חדשה">
+
+            <button onclick="updateUser()">עדכן פרטים</button>
+
+            <p class="success-message" id="successMessage" style="display: none;">הפרטים עודכנו בהצלחה! ✅</p>
+        </div>
+    </div>
+
+    <script src="home.js"></script>  
+    
+</body>
+</html>

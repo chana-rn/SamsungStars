@@ -1,0 +1,6 @@
+@SansungStars_HostAddress = http://localhost:5096
+
+GET {{SansungStars_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

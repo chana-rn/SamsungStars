@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>התחברות</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2 id="form-title">ברוך הבא!</h2>
+
+            <div id="login-form">
+                <p>אנא התחבר לחשבונך</p>
+                <input type="email" id="userName" placeholder="דוא״ל">
+                <input type="password" id="password" placeholder="סיסמה">
+                <button onclick="login()">התחבר</button>
+                <p class="toggle-form">אין לך חשבון? <a href="#" onclick="showRegister()">הרשמה</a></p>
+            </div>
+
+            <div id="register-form" style="display: none;">
+                <p>צור חשבון חדש</p>
+                <input type="text" id="firstName" placeholder="שם פרטי">
+                <input type="text" id="lastName" placeholder="שם משפחה">
+                <input type="email" id="newUserName" placeholder="דוא״ל">
+                <input type="password" id="newPassword" placeholder="סיסמה">
+                <button onclick="register()">הרשמה</button>
+                <button onclick="checkPassword()">בדיקה</button>
+                <p class="toggle-form">כבר יש לך חשבון? <a href="#" onclick="showLogin()">התחבר</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
