@@ -1,11 +1,14 @@
-﻿using WebApplication1;
+﻿using Entities;
+
 
 namespace Repositories
 {
     public interface IUserRepository
     {
-        Task<User> login(string Email, string Password);
-        Task<User> Register(string Email, string Password, string FirstName, string LastName);
-        Task<User> update(User userToUpdate);
+        Task<User> login(LoginRequest loginRequest);
+        Task<User> Register(User user);
+        Task<User> update(int id, User userToUpdate);
+        Task<User> findById(int id);
+
     }
 }

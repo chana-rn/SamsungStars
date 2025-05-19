@@ -73,7 +73,7 @@ async function register() {
         }
         const data = await response.json();
         console.log(data);
-        localStorage.setItem("id", data.id);
+        localStorage.setItem("userId", data.userId);
         window.location.href = "home.html"
 
     }
@@ -102,7 +102,7 @@ async function login() {
         }
         const data = await response.json();
         console.log(data)
-        localStorage.setItem("id", data.id);
+        localStorage.setItem("userId", data.userId);
         window.location.href = "home.html"
        
 

@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
-using WebApplication1;
+
 using Repositories;
+using Entities;
 namespace Services
 {
     public class UserService : IUserService
@@ -11,25 +12,25 @@ namespace Services
             _userRepository = userRepository;
         }
 
-        public async Task<User> login(String Email, String Password)
+        public async Task<User> login(LoginRequest loginRequest)
         {
-            if (Email == null || Password == null)
+            if (loginRequest.Email == null || loginRequest.Password == null)
                 return null;
-            return await _userRepository.login(Email, Password);
+            return await _userRepository.login(loginRequest);
         }
 
-        public async Task<User> Register(String Email, String Password, String FirstName, String LastName)
+        public async Task<User> Register(User user)
         {
-            Console.WriteLine(Email + "Service");
-            if (Email == null || Password == null)
+            Console.WriteLine(user.Email + "Service");
+            if (user.Email == null || user.Password == null)
                 return null;
-            return await  _userRepository.Register(Email, Password,FirstName,LastName);
+            return await  _userRepository.Register(user);
         }
-        public async Task<User> update(User userToUpdate)
+        public async Task<User> update(int id, User userToUpdate)
         {
             if (userToUpdate.Email == null || userToUpdate.Password == null)
                 throw new Exception();
-            return await _userRepository.update(userToUpdate);
+            return await _userRepository.update(id,userToUpdate);
 
         }
 
@@ -42,6 +43,11 @@ namespace Services
                 return zxcvbnResult.Score;
             }
             return -1;
+        }
+
+        public async Task<User> findById(int id)
+        {
+            return await _userRepository.findById(id);
         }
     }
 }

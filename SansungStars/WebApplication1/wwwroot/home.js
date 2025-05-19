@@ -1,12 +1,12 @@
 ﻿
-const id = localStorage.getItem("id");
-if (!id) {
+const userId = localStorage.getItem("userId");
+if (!userId) {
     window.location.href = "login.html"; 
 }
 
 async function updateUser() {
-    const id = localStorage.getItem("id");
-    if (!id) {
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
         window.location.href = "login.html";
     }
     const email = document.querySelector("#userName").value
@@ -14,7 +14,7 @@ async function updateUser() {
     const firstName = document.querySelector("#firstName").value
     const lastName = document.querySelector("#lastName").value
 
-    const user = { id,email, password, firstName, lastName }
+    const user = { userId,email, password, firstName, lastName }
     try {
         const res = await fetch("https://localhost:44325/api/Users/checkPassword", {
             method: 'POST',
@@ -34,7 +34,7 @@ async function updateUser() {
         console.log(error)
     }
     try {
-        const response = await fetch(`https://localhost:44325/api/Users/${id}`, {
+        const response = await fetch(`https://localhost:44325/api/Users/${userId}`, {
             method: 'PUT',
             body: JSON.stringify(user),
             headers: {
@@ -44,7 +44,7 @@ async function updateUser() {
         if (!response.ok) {
             throw new Error("couldn't save data!")
         }
-        getUser(id);
+        getUser(userId);
 
     }
     catch (error) {
@@ -55,9 +55,9 @@ async function updateUser() {
         document.getElementById("successMessage").style.display = "none";
     }, 3000);
 }
-async function getUser(id) {
+async function getUser(userId) {
     try {
-        const response = await fetch(`https://localhost:44325/api/Users/${id}`);
+        const response = await fetch(`https://localhost:44325/api/Users/${userId}`);
         if (!response.ok)
             throw new Error("User not found");
 
@@ -70,4 +70,4 @@ async function getUser(id) {
     }
 }
 
-getUser(id);
+getUser(userId);

@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities;
+using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Mvc;
 using Services;
 using System.Text.Json;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace WebApplication1.Controllers
+namespace SamsungStars.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,9 +27,9 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult> Post([FromBody] LoginRequest request)
+        public async Task<ActionResult> Post([FromBody] Entities.LoginRequest request)
         {
-            User res = await _userService.login(request.Email,request.Password);
+            User res = await _userService.login(request);
             if (res == null)
                 return NotFound();
             else
@@ -36,19 +38,13 @@ namespace WebApplication1.Controllers
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<ActionResult> Get(int id)
         {
-            using (StreamReader reader = System.IO.File.OpenText("Users.txt"))
-            {
-                string? currentUserInFile;
-                while ((currentUserInFile = reader.ReadLine()) != null)
-                {
-                    User user = JsonSerializer.Deserialize<User>(currentUserInFile);
-                    if (user.Id == id)
-                        return Ok(user);
-                }
-            }
-            return NotFound();
+            User user =await  _userService.findById(id);
+            if (user == null)
+                return NotFound();
+            else
+                return Ok(user);
 
         }
 
@@ -73,11 +69,11 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] User user)
         {
-            int passward = _userService.checkPassword(user.Password);
-            if (passward < 2)
-                return BadRequest("Passward is not strong enough");
+            int password = _userService.checkPassword(user.Password);
+            if (password < 2)
+                return BadRequest("Password is not strong enough");
             Console.WriteLine(user+"contr");
-            User res = await _userService.Register(user.Email, user.Password, user.FirstName, user.LastName);
+            User res = await _userService.Register(user);
             if (res == null)
                 return NotFound();
             else
@@ -92,12 +88,12 @@ namespace WebApplication1.Controllers
             {
                 int passward = _userService.checkPassword(user.Password);
                 if (passward < 2)
-                    return BadRequest("Passward is not strong enough");
+                    return BadRequest("Password is not strong enough");
             }
-            User res = new(user.Email, user.Password, user.FirstName, user.LastName, id);
+            
             try
             {
-               await _userService.update(res);
+              User res= await _userService.update(id,user);
                 return Ok(res);
             }
             catch
