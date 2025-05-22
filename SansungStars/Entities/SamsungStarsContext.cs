@@ -8,6 +8,10 @@ namespace Entities;
 
 public partial class SamsungStarsContext : DbContext
 {
+    public SamsungStarsContext()
+    {
+        
+    }
     public SamsungStarsContext(DbContextOptions<SamsungStarsContext> options)
         : base(options)
     {

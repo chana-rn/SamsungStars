@@ -37,6 +37,9 @@ namespace SamsungStars.Controllers
         {
             try
             {
+                //in sevice layer
+                //if(order.OrderDate == DateTime.MinValue || order.OrderSum<0 || order.UserId<0)
+                //    return BadRequest("Invalid order data");
                 Order res = await _orderService.AddOrder(order);
                 return Ok(res);
             }
