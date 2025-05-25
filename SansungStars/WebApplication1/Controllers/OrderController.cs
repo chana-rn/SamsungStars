@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using DTO;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 
@@ -17,30 +18,16 @@ namespace SamsungStars.Controllers
             _orderService = orderService;
         }
 
-        // GET: api/<ValuesController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/<ValuesController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Order order)
+        public async Task<IActionResult> Post([FromBody]OrderDTO order)
         {
             try
             {
-                //in sevice layer
+                //in service layer
                 //if(order.OrderDate == DateTime.MinValue || order.OrderSum<0 || order.UserId<0)
                 //    return BadRequest("Invalid order data");
-                Order res = await _orderService.AddOrder(order);
+                OrderDTO res = await _orderService.AddOrder(order);
                 return Ok(res);
             }
             catch(ArgumentException e)
@@ -48,17 +35,6 @@ namespace SamsungStars.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-        // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
         }
-
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-    }
+    
 }

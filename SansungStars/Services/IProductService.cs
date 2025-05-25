@@ -1,4 +1,5 @@
 ﻿using Entities;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Services
 {
     public interface IProductService
     {
-        Task<List<Product>> getProducts();
+        Task<List<ProductDTO>> getProducts(string? desc, int? minPrice, int? maxPrice, int?[] categoryIds);
     }
 }

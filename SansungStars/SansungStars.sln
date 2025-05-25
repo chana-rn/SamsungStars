@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entiti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamsungStarsTesting", "SamsungStarsTesting\SamsungStarsTesting.csproj", "{B5AD7CDB-D4D3-4159-ABF8-F834C33BDEA3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{5FB9AF5D-9567-4939-92A7-79DC3452FE3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{B5AD7CDB-D4D3-4159-ABF8-F834C33BDEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5AD7CDB-D4D3-4159-ABF8-F834C33BDEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5AD7CDB-D4D3-4159-ABF8-F834C33BDEA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FB9AF5D-9567-4939-92A7-79DC3452FE3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FB9AF5D-9567-4939-92A7-79DC3452FE3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FB9AF5D-9567-4939-92A7-79DC3452FE3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FB9AF5D-9567-4939-92A7-79DC3452FE3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

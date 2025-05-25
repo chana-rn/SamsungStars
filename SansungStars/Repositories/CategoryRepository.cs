@@ -18,7 +18,7 @@ namespace Repositories
         }
         public async Task<List<Category>> getCategory()
         {
-            return await _samsungStarsContext.Categories.ToListAsync<Category>();
+            return await _samsungStarsContext.Categories.Include(category => category.Products).ToListAsync<Category>();
         }
     }
 }

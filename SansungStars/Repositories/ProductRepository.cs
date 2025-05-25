@@ -16,9 +16,15 @@ namespace Repositories
         {
             _samsungStarsContext = samsungStarsContext;
         }
-        public async Task<List<Product>> getProducts()
+        public async Task<List<Product>> getProducts(string? description, int? minPrice, int? maxPrice, int?[] categoryIds)
         {
-            return await _samsungStarsContext.Products.ToListAsync<Product>();
+            var query = _samsungStarsContext.Products.Include(product => product.Category)
+            .Where(product =>
+            (description == null ? (true) : (product.Description.Contains(description)))
+            && (minPrice == null ? (true) : (product.Price >= minPrice))
+            && (maxPrice == null ? (true) : (product.Price <= maxPrice))
+            && ((categoryIds.Length == 0) ? (true) : (categoryIds.Contains(product.CategoryId)))).OrderBy(product => product.Price);
+            return await query.ToListAsync<Product>();
         }
 
    
