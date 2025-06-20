@@ -19,12 +19,8 @@ namespace SamsungStars.Controllers
             _userService = userService;
         }
 
-        // GET: api/<UsersController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "chana", "efrat" };
-        }
+       
+        
 
         [HttpPost("login")]
         public async Task<ActionResult> Post([FromBody] Entities.LoginRequest request)
@@ -103,10 +99,6 @@ namespace SamsungStars.Controllers
 
         }
 
-        // DELETE api/<UsersController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }
