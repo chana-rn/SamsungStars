@@ -27,6 +27,9 @@ namespace Repositories
             return await query.ToListAsync<Product>();
         }
 
-   
+        public async Task<object?> getProducts()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
