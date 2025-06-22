@@ -28,6 +28,11 @@ async function updateUser() {
             alert("יש להזין סיסמא חזקה יותר");
             return;
         }
+        if (strength === "לא ידוע") {
+            alert("הכנס סיסמא");
+            return;
+        }
+            
 
     }
     catch (error) {

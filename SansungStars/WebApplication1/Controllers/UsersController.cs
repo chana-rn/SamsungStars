@@ -14,9 +14,12 @@ namespace SamsungStars.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UsersController(IUserService userService)
+        private readonly ILogger<UsersController> _logger;
+
+        public UsersController(ILogger<UsersController> logger, IUserService userService)
         {
             _userService = userService;
+            _logger = logger;
         }
 
        
@@ -27,9 +30,17 @@ namespace SamsungStars.Controllers
         {
             User res = await _userService.login(request);
             if (res == null)
-                return NotFound();
+            {
+                _logger.LogWarning("Login failed for user {Email}", request.Email);
+                return Unauthorized();
+            }
             else
+            {
+
+                _logger.LogInformation("User {Email} logged in successfully", request.Email);
                 return Ok(res);
+            }
+               
         }
 
         // GET api/<UsersController>/5
@@ -43,6 +54,7 @@ namespace SamsungStars.Controllers
                 return Ok(user);
 
         }
+
 
         [HttpPost("checkPassword")]
         public IActionResult Post([FromBody] string passward)

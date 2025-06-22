@@ -22,6 +22,7 @@ builder.Services.AddDbContext<SamsungStarsContext>(option => option.UseSqlServer
 
 
 builder.Services.AddControllers();
+builder.Logging.ClearProviders();
 builder.Host.UseNLog();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

@@ -2,21 +2,30 @@
 
 using Repositories;
 using Entities;
+using Microsoft.Extensions.Logging;
 namespace Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository)
+        private readonly ILogger<UserService> _logger;
+        public UserService(IUserRepository userRepository, ILogger<UserService> logger)
         {
             _userRepository = userRepository;
+            _logger = logger;
         }
 
         public async Task<User> login(LoginRequest loginRequest)
         {
             if (loginRequest.Email == null || loginRequest.Password == null)
                 return null;
-            return await _userRepository.login(loginRequest);
+
+            var user = await _userRepository.login(loginRequest);
+            if (user != null)
+                _logger.LogInformation("User {Email} logged in successfully", user.Email);
+
+            return user;
+
         }
 
         public async Task<User> Register(User user)
@@ -37,7 +46,7 @@ namespace Services
         public int checkPassword(string passward)
         {
             Console.WriteLine($"Password: {passward}");
-            if (passward != null)
+            if (passward != null && passward!="")
             {
                 var zxcvbnResult = Zxcvbn.Core.EvaluatePassword(passward);
                 return zxcvbnResult.Score;
