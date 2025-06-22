@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.RegularExpressions;
 
 using Repositories;
 using Entities;
@@ -27,13 +28,12 @@ namespace Services
             return user;
 
         }
-
-        public async Task<User> Register(User user)
+       public async Task<User> Register(User user)
         {
-            Console.WriteLine(user.Email + "Service");
-            if (user.Email == null || user.Password == null)
-                return null;
-            return await  _userRepository.Register(user);
+            if (!ValidateUser(user, out string error))
+                throw new ArgumentException(error);
+
+            return await _userRepository.Register(user);
         }
         public async Task<User> update(int id, User userToUpdate)
         {
@@ -57,6 +57,24 @@ namespace Services
         public async Task<User> findById(int id)
         {
             return await _userRepository.findById(id);
+        }
+
+        public bool ValidateUser(User user, out string error)
+        {
+            error = null;
+            if (string.IsNullOrWhiteSpace(user.Email) ||
+                !Regex.IsMatch(user.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                error = "Invalid email address";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(user.Password) || user.Password.Length < 6)
+            {
+                error = "Password must be at least 6 characters";
+                return false;
+            }
+            return true;
         }
     }
 }
