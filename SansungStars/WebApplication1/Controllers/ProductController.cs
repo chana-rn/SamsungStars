@@ -32,6 +32,7 @@ namespace SamsungStars.Controllers
             if (products == null)
                 return NotFound();
             return Ok(products);
+            //return products == null ? NotFound() : Ok(products);
         }
 
         

@@ -19,7 +19,8 @@ namespace Repositories
         {
             await _samsungStarsContext.Orders.AddAsync(order);
             await _samsungStarsContext.SaveChangesAsync();
-            return await Task.FromResult(order);
+            //return await Task.FromResult(order);
+            //return order;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Services
 
         public int checkPassword(string passward)
         {
-            Console.WriteLine($"Password: {passward}");
+            Console.WriteLine($"Password: {passward}");//
             if (passward != null && passward!="")
             {
                 var zxcvbnResult = Zxcvbn.Core.EvaluatePassword(passward);
@@ -69,7 +69,7 @@ namespace Services
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(user.Password) || user.Password.Length < 6)
+            if (string.IsNullOrWhiteSpace(user.Password) || user.Password.Length < 6)//use CheckPassword instead
             {
                 error = "Password must be at least 6 characters";
                 return false;

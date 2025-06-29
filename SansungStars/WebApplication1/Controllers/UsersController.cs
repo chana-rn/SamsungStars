@@ -47,11 +47,13 @@ namespace SamsungStars.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {
-            User user =await  _userService.findById(id);
+            User user = await _userService.findById(id);
+            // Can be shortened: return user == null ? NotFound() : Ok(user);
             if (user == null)
                 return NotFound();
             else
                 return Ok(user);
+            
 
         }
 
@@ -80,8 +82,9 @@ namespace SamsungStars.Controllers
             int password = _userService.checkPassword(user.Password);
             if (password < 2)
                 return BadRequest("Password is not strong enough");
-            Console.WriteLine(user+"contr");
+            Console.WriteLine(user + "contr");//
             User res = await _userService.Register(user);
+            // Use the shorter version
             if (res == null)
                 return NotFound();
             else

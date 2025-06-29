@@ -2,8 +2,10 @@
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Services;
+////delete comments from all files
+//clean code - use meaningful function names in all files
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860//
 
 namespace SamsungStars.Controllers
 {
@@ -17,7 +19,7 @@ namespace SamsungStars.Controllers
             _categoryService = categoryService;
         }
 
-        // GET: api/<CategoryController>
+        // GET: api/<CategoryController>//
         [HttpGet]
         public async Task<ActionResult<List<CategoryDTO>>> Get()
         {
@@ -25,6 +27,7 @@ namespace SamsungStars.Controllers
             if (categories == null)
                 return NotFound();
             return Ok(categories);
+            //return categories == null ? NotFound() : Ok(categories);
         }
     }
 }

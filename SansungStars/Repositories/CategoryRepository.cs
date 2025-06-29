@@ -16,7 +16,7 @@ namespace Repositories
         {
             _samsungStarsContext=samsungStarsContext;
         }
-        public async Task<List<Category>> getCategory()
+        public async Task<List<Category>> getCategory()//GetCategories - Change all function names to start with a capital letter. 
         {
             return await _samsungStarsContext.Categories.Include(category => category.Products).ToListAsync<Category>();
         }
