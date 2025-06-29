@@ -23,7 +23,8 @@ namespace Repositories
 
             await _samsungStarsContext.Users.AddAsync(user);
             await _samsungStarsContext.SaveChangesAsync();
-            return await Task.FromResult(user);
+            //return await Task.FromResult(user);
+            return user;
         }
 
         public async  Task<User> update(int id, User userToUpdate)
@@ -35,8 +36,7 @@ namespace Repositories
 
         public async Task<User> findById(int id)
         {
-            User user = await _samsungStarsContext.Users.FindAsync(id);
-            return user;
+           return await _samsungStarsContext.Users.FindAsync(id);
         }
     }
 }
